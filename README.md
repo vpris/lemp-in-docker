@@ -1,4 +1,4 @@
-# lemp-in-docker (Linux Enginx Mysql PHP)
+# lemp-in-docker (Linux Nginx Mysql PHP)
 
 ## How to run
 
