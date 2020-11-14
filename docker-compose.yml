@@ -5,12 +5,15 @@ services:
         restart: always
         ports:
             - "80:80"
+            - "443:443"
         volumes:
             - ./hosts:/etc/nginx/conf.d
             - ./www:/var/www
             - ./logs:/var/log/nginx
         links:
             - php
+#    certbot:
+#        image: certbot/certbot
     php:
         build: ./images/php
         restart: always
