@@ -1,8 +1,11 @@
 version: '3'
 services:
     nginx:
-        image: nginx:latest
+        image: nginx:mainline-alpine
+        container_name: webserver
         restart: always
+        networks:
+            - app-network
         ports:
             - "80:80"
             - "443:443"
@@ -16,7 +19,10 @@ services:
 #        image: certbot/certbot
     php:
         build: ./images/php
+        container_name: php
         restart: always
+        networks:
+            - app-network
         links:
             - mysql
         volumes:
@@ -24,7 +30,10 @@ services:
 
     mysql:
         image: mariadb
+        container_name: php
         restart: always
+        networks:
+            - app-network
         ports:
             - "3306:3306"
         volumes:
@@ -33,7 +42,10 @@ services:
             MYSQL_ROOT_PASSWORD: secret
     pma:
         image: phpmyadmin/phpmyadmin
+        container_name: pma
         restart: always
+        networks:
+            - app-network
         links:
             - mysql:mysql
         ports:
